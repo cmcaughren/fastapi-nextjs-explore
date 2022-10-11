@@ -38,7 +38,7 @@ export default function Home({ allPostsData }) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Lessons</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, date, title, chapter }) => (
             <>
             <li className={utilStyles.listItem} key={id}>
               <Card>
@@ -47,6 +47,7 @@ export default function Home({ allPostsData }) {
                     <Typography gutterBottom variant="h5" component="div">
                       {title}
                     </Typography>
+                      {chapter}
                     <br />
                     <small className={utilStyles.lightText}>
                       <Date dateString={date} />
