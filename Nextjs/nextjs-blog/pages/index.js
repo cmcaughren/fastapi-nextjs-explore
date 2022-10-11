@@ -4,6 +4,12 @@ import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
 import Link from 'next/link';
 import Date from '../components/date';
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -22,29 +28,34 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
-          Hello, this is a fine website and here is an introduction
-          about me. 
-        </p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+          This is a sample website built from{' '}
+          <a href="https://nextjs.org/learn">the Next.js tutorial</a>.
+          Below, key lessons from the tutorial are outlined for easy review.
         </p>
       </section>
 
       {/* Add this <section> tag below the existing <section> tag */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>Lessons</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
+            <>
             <li className={utilStyles.listItem} key={id}>
-            <Link href={`/posts/${id}`}>
-              <a>{title}</a>
-            </Link>
-            <br />
-            <small className={utilStyles.lightText}>
-              <Date dateString={date} />
-            </small>
-          </li>
+              <Card>
+                <CardActionArea href={`/posts/${id}`}>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {title}
+                    </Typography>
+                    <br />
+                    <small className={utilStyles.lightText}>
+                      <Date dateString={date} />
+                    </small>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </li>
+            </>
           ))}
         </ul>
       </section>
