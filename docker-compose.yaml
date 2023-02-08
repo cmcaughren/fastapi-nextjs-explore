@@ -1,0 +1,12 @@
+services:
+  fastapi:
+    build: ./FastAPI
+    ports:
+      - "80:80"
+
+  nextjs:
+    build: ./Nextjs/nextjs-blog
+    ports:
+      - "3000:3000"
+
+

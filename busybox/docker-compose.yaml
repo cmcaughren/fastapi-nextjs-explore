@@ -1,0 +1,13 @@
+services:
+  mydevcontainer:
+    build: .
+    ports:
+      - "5000:5000"
+
+  myserver:
+    image: "python:3.7-slim"
+    expose:
+      - "3000"
+    entrypoint: 
+       python -m http.server --bind 0.0.0.0 --directory /app/ 3000
+
