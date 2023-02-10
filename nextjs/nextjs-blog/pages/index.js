@@ -4,6 +4,7 @@ import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
 import Link from 'next/link';
 import Date from '../components/date';
+
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -34,12 +35,10 @@ export default function Home({ allPostsData }) {
         </p>
       </section>
 
-      {/* Add this <section> tag below the existing <section> tag */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Lessons</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title, chapter }) => (
-            <>
             <li className={utilStyles.listItem} key={id}>
               <Card>
                 <CardActionArea href={`/posts/${id}`}>
@@ -56,7 +55,6 @@ export default function Home({ allPostsData }) {
                 </CardActionArea>
               </Card>
             </li>
-            </>
           ))}
         </ul>
       </section>
