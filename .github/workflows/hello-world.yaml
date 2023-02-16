@@ -1,4 +1,7 @@
+name: Hello World Work-flow demo
 on: 
   workflow_dispatch:
 jobs:
-  - run: echo "hello world" 
+  Hello-World:
+    steps:
+      - run: echo "hello world" 
