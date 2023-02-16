@@ -1,10 +1,12 @@
 services:
   fastapi:
+    container_name: fastapi
     build: ./api
     ports:
       - "80:80"
 
   nextjs:
+    container_name: nextjs
     build: ./nextjs/nextjs-blog
     ports:
       - "3000:3000"
