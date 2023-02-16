@@ -3,19 +3,21 @@ tag := $$(git rev-parse --abbrev-ref @)-$$(git rev-parse --short @)
 .PHONY: all up clean lint test build push
 
 all: 
-	docker-compose build
+	@docker-compose build
 
 up:
-	docker-compose up -d
+	@docker-compose up -d
 
 clean:
-	docker-compose down
+	@docker-compose down
 
 lint:
-	docker exec -it fastapi sh -c "pylint app"
+	@docker exec -d -it fastapi sh -c "pylint app" ; \
+	echo $$?
 
 test:
-	docker exec -it fastapi sh -c "pytest"
+	@docker exec -d -it fastapi sh -c "pytest" ; \
+	echo $$?
 
 build:
 ifeq ($(filter-out build, $(MAKECMDGOALS)),)

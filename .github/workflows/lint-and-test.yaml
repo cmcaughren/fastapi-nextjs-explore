@@ -1,0 +1,23 @@
+name: Lint and Test
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+  
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+       
+      - name: Build-and-run
+        run: make up
+      
+      - name: Linter
+        run: make lint
+      
+      - name: Pytest
+        run: make pytest
