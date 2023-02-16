@@ -18,8 +18,9 @@ jobs:
         uses: actions/checkout@v3
        
       - name: Set-PAT
-        run: CR_PAT= ${{ secrets.GITHUB_TOKEN }}
-        run: export CR_PAT
+        run: |
+          CR_PAT= ${{ secrets.GITHUB_TOKEN }}
+          export CR_PAT
       
       - name: Build
         run: make build dev
