@@ -1,0 +1,4 @@
+on: 
+  workflow_dispatch:
+jobs:
+  - run: echo "hello world" 
