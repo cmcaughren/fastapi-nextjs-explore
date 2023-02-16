@@ -8,6 +8,8 @@ on:
     workflows: [Lint and Test]
     types: [completed]
 
+env:
+  CR_PAT: ${{ secrets.GITHUB_TOKEN }}
   
 jobs:
   build-and-push:
@@ -17,12 +19,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
        
-      - name: Set-PAT
-        run: |
-          CR_PAT= ${{ secrets.GITHUB_TOKEN }}
-          export CR_PAT
-        shell: bash
-      
       - name: Build
         run: make build dev
       
