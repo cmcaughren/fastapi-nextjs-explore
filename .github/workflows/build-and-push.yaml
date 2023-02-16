@@ -1,0 +1,29 @@
+name: Build and Push
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_run:
+    workflows: [Lint and Test]
+    types: [completed]
+
+  
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+       
+      - name: Set-PAT
+        run: CR_PAT= ${{ secrets.GITHUB_TOKEN }}
+        run: export CR_PAT
+      
+      - name: Build
+        run: make build dev
+      
+      - name: Push
+        run: make push dev
+
